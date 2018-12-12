@@ -11,7 +11,7 @@ def convert(filepath):
     print(filepath, file=sys.stderr)
     with open(filepath, 'rb') as xmlfile:
         osm = xmltodict.parse(xmlfile)
-        print(json.dumps(osm, indent=4))
+        #print(json.dumps(osm, indent=4))
         nodes = osm["osm"].get("node", None)
         if nodes:
             nodes_list = nodes if isinstance(nodes, list) else [nodes]
