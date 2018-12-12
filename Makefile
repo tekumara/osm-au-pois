@@ -25,8 +25,7 @@ $(output_dir):
 
 ## extract xml from pbf
 extract-xml: osmosis $(output_dir) $(pbf)
-	parallel -a OSMFeaturesSet_POInty.csv --colsep ',' echo {1}.{2}
-	#osmosis/bin/osmosis --read-pbf $(pbf) --node-key-value keyValueList="amenity.atm" --write-xml $(output_dir)/atm.xml
+	parallel -a OSMFeaturesSet_POInty.csv --colsep ',' osmosis/bin/osmosis --read-pbf $(pbf) --node-key-value keyValueList="{1}.{2}" --write-xml $(output_dir)/{1}.{2}.xml
 
 ## install dependencies needed if running on Mac OS X
 deps-mac:
