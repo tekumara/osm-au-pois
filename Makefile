@@ -36,11 +36,11 @@ $(output_dir):
 	mkdir output
 
 ## extract xml from pbf
-extract-xml: osmosis $(output_dir) $(pbf)
+xml: osmosis $(output_dir) $(pbf)
 	parallel -a OSMFeaturesSet_POInty.csv --colsep ',' osmosis/bin/osmosis --read-pbf $(pbf) --node-key-value keyValueList="{1}.{2}" --write-xml $(output_dir)/{1}.{2}.xml
 
 ## convert xmk to csv
-convert-csv: $(output_dir) $(venv)
+csv: $(output_dir) $(venv)
 	for file in $(output_dir)/*.xml; do $(venv)/bin/python ./xml2csv.py "$$file" > "$${file}.csv"; done
 
 ## zip contents of output/
