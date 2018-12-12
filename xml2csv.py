@@ -11,14 +11,18 @@ def convert(filepath):
     print(filepath, file=sys.stderr)
     with open(filepath, 'rb') as xmlfile:
         osm = xmltodict.parse(xmlfile)
-        # print(json.dumps(osm, indent=4))
-        for node in osm["osm"]["node"]:
-            print("""{},{},"{}",{},{}""".format(category(filepath), node["@id"], name(node["tag"]), node["@lat"],
-                                                node["@lon"]))
+        print(json.dumps(osm, indent=4))
+        nodes = osm["osm"].get("node", None)
+        if nodes:
+            nodes_list = nodes if isinstance(nodes, list) else [nodes]
+            for node in nodes_list:
+                print("""{},{},"{}",{},{}""".format(category(filepath), node["@id"], name(node["tag"]), node["@lat"],
+                                                    node["@lon"]))
 
 
 def category(filepath):
     return filepath[filepath.rfind("/") + 1:].replace(".xml", "")
+
 
 def name(tags):
     if isinstance(tags, list):
