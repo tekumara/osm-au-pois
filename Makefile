@@ -43,6 +43,10 @@ xml: osmosis $(output_dir) $(pbf)
 csv: $(output_dir) $(venv)
 	for file in $(output_dir)/*.xml; do $(venv)/bin/python ./xml2csv.py "$$file" > "$${file}.csv"; done
 
+## count number of POIs in the csvs
+count:
+	cat $(output_dir)/*.csv | wc -l
+
 ## zip contents of output/
 zip: $(output_dir)
 	cd $(output_dir) && zip ../osmfeatures.zip *
