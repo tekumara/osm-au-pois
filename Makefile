@@ -41,4 +41,4 @@ extract-xml: osmosis $(output_dir) $(pbf)
 
 ## convert xmk to csv
 convert-csv: $(output_dir) $(venv)
-	for file in $(output_dir)/*; do $(venv)/bin/python ./xml2csv.py "$$file"; done
+	for file in $(output_dir)/*.xml; do $(venv)/bin/python ./xml2csv.py "$$file" > "$${file}.csv"; done

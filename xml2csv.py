@@ -2,11 +2,13 @@
 
 import argparse
 import json
+import sys
 
 import xmltodict
 
 
 def convert(filepath):
+    print(filepath, file=sys.stderr)
     with open(filepath, 'rb') as xmlfile:
         osm = xmltodict.parse(xmlfile)
         # print(json.dumps(osm, indent=4))
