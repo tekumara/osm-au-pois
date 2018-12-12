@@ -12,12 +12,13 @@ output_dir := output
 download-pbf: $(pbf)
 
 $(pbf):
+	mkdir -p pbf
 	curl https://download.geofabrik.de/australia-oceania-latest.osm.pbf -o $(pbf)
 
 ## install osmosis binaries
 osmosis:
 	mkdir -p osmosis
-	curl -s https://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz | tar -xv -C osmosis
+	curl -s https://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz | tar -xvz -C osmosis
 
 $(output_dir):
 	mkdir output
